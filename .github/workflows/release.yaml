@@ -37,14 +37,11 @@ jobs:
           asset_path: ./print_ip-0.0.${{ github.run_number }}-Linux.deb
           asset_name: print_ip-0.0.${{ github.run_number }}-Linux.deb
           asset_content_type: application/vnd.debian.binary-package
-      - name: Prepare doxygen output folder
-        working-directory: ./src
-        run: mkdir public
-      - uses: mattnotmitt/doxygen-action@v1
+      - uses: mattnotmitt/doxygen-action@v1.1.0
         with:
-          working-directory: ./src/public
-          doxyfile-path: ../../Doxyfile
+          working-directory: "."
+          doxyfile-path: "./Doxyfile"
       - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./src/public/html
+          publish_dir: ./html
