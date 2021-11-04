@@ -43,7 +43,7 @@ jobs:
       - uses: mattnotmitt/doxygen-action@v1
         with:
           working-directory: ./src/public
-          doxyfile-path: ../Doxyfile
+          doxyfile-path: ../../Doxyfile
       - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
