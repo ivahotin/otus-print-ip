@@ -10,6 +10,11 @@
 #include <algorithm>
 #include <iterator>
 
+/**
+ * @brief Brief explaination of namespace ip
+ *
+ * Detailed explaination of namespace MyNamespace
+ */
 namespace ip
 {
 
