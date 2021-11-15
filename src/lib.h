@@ -43,15 +43,6 @@ namespace ip
             }
         }
     }
-
-    template <typename C> struct is_string {
-        static constexpr bool value = false;
-    };
-    template <> struct is_string<std::string> {
-        static constexpr bool value = true;
-    };
-    template <typename C>
-    inline constexpr bool is_string_v = is_string<C>::value;
     
     /**
      * Prints IP address
@@ -59,7 +50,7 @@ namespace ip
      * 
      */
     template <typename C,
-              typename Fake = std::enable_if_t<is_string_v<C>, void>>
+              typename Fake = std::enable_if_t<std::is_same_v<C, std::string>, void>>
     void print_ip(const C& ip, std::ostream& os = std::cout) {
         os << ip;
     }
