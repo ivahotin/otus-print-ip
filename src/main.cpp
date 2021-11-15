@@ -19,6 +19,8 @@ int main() {
     std::cout << std::endl;
     ip::print_ip(std::make_tuple(255, 255, 255, 255));
     std::cout << std::endl;
+    ip::print_ip(std::make_tuple(255, 254, 1, 12, 99, 46, 1,23,4, 56, 78));
+    std::cout << std::endl;
 
     return 0;
 }

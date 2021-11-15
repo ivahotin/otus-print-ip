@@ -4,6 +4,7 @@
 #include <type_traits>
 #include <array>
 #include <string>
+#include <sstream>
 #include <cstring>
 #include <list>
 #include <vector>
@@ -28,33 +29,38 @@ namespace ip
               typename Fake = std::enable_if_t<std::is_integral_v<Num>, void>>
     void print_ip(Num ip, std::ostream& os = std::cout) {
 
-        if (ip < 0) {
-            ip = (~ip + 1);
+        const size_t _size = sizeof(ip);
+        std::vector<int> nums;
+	    for (unsigned i = 0; i < _size; i++) {
+            nums.push_back(ip & 0xFF);
+		    ip >>= 8;
+	    }
+
+        for (auto it = nums.rbegin(); it != nums.rend(); it++) {
+            os << *it;
+            if (std::next(it) != nums.rend()) {
+                os << '.';
+            }
         }
-
-        constexpr size_t len = sizeof(ip);
-        if (len > 4) {
-            ip = ip << (len - 4);
-            ip = ip >> (len - 4);
-        }
-
-        std::array<uint8_t, 4> bytes;
-        std::memcpy(bytes.data(), &ip, len);
-
-        for (size_t k = 3; k > 0; k--) {
-            os << std::to_string(bytes.at(k)) << '.';
-        }
-
-        os << std::to_string(bytes.at(0));
     }
 
+    template <typename C> struct is_string {
+        static constexpr bool value = false;
+    };
+    template <> struct is_string<std::string> {
+        static constexpr bool value = true;
+    };
+    template <typename C>
+    inline constexpr bool is_string_v = is_string<C>::value;
+    
     /**
      * Prints IP address
      * @tparam 
      * 
-     * 
      */
-    void print_ip(const std::string ip, std::ostream& os = std::cout) {
+    template <typename C,
+              typename Fake = std::enable_if_t<is_string_v<C>, void>>
+    void print_ip(const C& ip, std::ostream& os = std::cout) {
         os << ip;
     }
 
