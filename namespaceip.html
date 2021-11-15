@@ -87,17 +87,13 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structip_1_1is__homogeneous__tuple_3_01T_00_01U_00_01Args_8_8_8_01_4.html">is_homogeneous_tuple&lt; T, U, Args... &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structip_1_1is__string.html">is_string</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structip_1_1is__string_3_01std_1_1string_01_4.html">is_string&lt; std::string &gt;</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a2d2ca9e85bec413cb3c315d7a8b0858f"><td class="memTemplParams" colspan="2">template&lt;typename Num , typename Fake  = std::enable_if_t&lt;std::is_integral_v&lt;Num&gt;, void&gt;&gt; </td></tr>
 <tr class="memitem:a2d2ca9e85bec413cb3c315d7a8b0858f"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceip.html#a2d2ca9e85bec413cb3c315d7a8b0858f">print_ip</a> (Num ip, std::ostream &amp;os=std::cout)</td></tr>
 <tr class="separator:a2d2ca9e85bec413cb3c315d7a8b0858f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a017f4aaedab18ee853c25f24e92584bd"><td class="memTemplParams" colspan="2">template&lt;typename C , typename Fake  = std::enable_if_t&lt;is_string_v&lt;C&gt;, void&gt;&gt; </td></tr>
+<tr class="memitem:a017f4aaedab18ee853c25f24e92584bd"><td class="memTemplParams" colspan="2">template&lt;typename C , typename Fake  = std::enable_if_t&lt;std::is_same_v&lt;C, std::string&gt;, void&gt;&gt; </td></tr>
 <tr class="memitem:a017f4aaedab18ee853c25f24e92584bd"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceip.html#a017f4aaedab18ee853c25f24e92584bd">print_ip</a> (const C &amp;ip, std::ostream &amp;os=std::cout)</td></tr>
 <tr class="separator:a017f4aaedab18ee853c25f24e92584bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a87decb16b41857cad639df0a532abab0"><td class="memTemplParams" colspan="2">template&lt;typename C , typename Fake  = std::enable_if_t&lt;is_container_v&lt;C&gt;, void&gt;&gt; </td></tr>
@@ -112,9 +108,6 @@ Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a9bd4051237de64745a0b8bca30f17499"><td class="memTemplParams" colspan="2">template&lt;typename C &gt; </td></tr>
-<tr class="memitem:a9bd4051237de64745a0b8bca30f17499"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceip.html#a9bd4051237de64745a0b8bca30f17499">is_string_v</a> = <a class="el" href="structip_1_1is__string.html">is_string</a>&lt;C&gt;::value</td></tr>
-<tr class="separator:a9bd4051237de64745a0b8bca30f17499"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aef777c623a8b4a714ebf3fade42692c6"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:aef777c623a8b4a714ebf3fade42692c6"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceip.html#aef777c623a8b4a714ebf3fade42692c6">is_container_v</a> = <a class="el" href="structip_1_1is__container.html">is_container</a>&lt;T&gt;::value</td></tr>
 <tr class="separator:aef777c623a8b4a714ebf3fade42692c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -175,7 +168,7 @@ template&lt;typename C , typename Fake  = std::enable_if_t&lt;is_container_v&lt;
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename C , typename Fake  = std::enable_if_t&lt;is_string_v&lt;C&gt;, void&gt;&gt; </div>
+template&lt;typename C , typename Fake  = std::enable_if_t&lt;std::is_same_v&lt;C, std::string&gt;, void&gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">void ip::print_ip </td>
@@ -359,30 +352,6 @@ template&lt;typename... Args&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">constexpr bool ip::is_homogeneous_tuple_v = <a class="el" href="structip_1_1is__homogeneous__tuple.html">is_homogeneous_tuple</a>&lt;Args...&gt;::value</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a9bd4051237de64745a0b8bca30f17499" name="a9bd4051237de64745a0b8bca30f17499"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9bd4051237de64745a0b8bca30f17499">&#9670;&nbsp;</a></span>is_string_v</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename C &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr bool ip::is_string_v = <a class="el" href="structip_1_1is__string.html">is_string</a>&lt;C&gt;::value</td>
         </tr>
       </table>
   </td>
